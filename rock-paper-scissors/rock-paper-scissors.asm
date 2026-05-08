@@ -1,31 +1,6 @@
-# -------------------- Explication (choix, résultat) d'une partie
-# CHOIX POSSIBLES
-# 0 = pierre
-# 1 = feuille
-# 2 = ciseaux
-#
-# RESULTAT
-# 0 = partie nulle
-# 1 = joueur gagne
-# 2 = ordi gagne (joueur perd)
-#
-# PARTIES POSSIBLES
-# J2 J1		Nombre décimal de la partie	Résultat
-# 00 00		0				0
-# 00 01		1				1
-# 00 10		2				2
-#
-# 01 00		4				2
-# 01 01		5				0
-# 01 10		6				1
-# 
-# 10 00		8				1
-# 10 01		9				2
-# 10 10		10				0
-# --------------------
 	.data
 str_p1:		.asciiz	"Choisissez la Pierre (1), la Feuille (2), ou les Ciseaux (3) : "
-str_r1:		.asciiz "Vous avez choisi :      "
+str_r1:		.asciiz "\nVous avez choisi :      "
 str_r2:		.asciiz "L'ordinateur a choisi : "
 str_r:		.asciiz "Pierre\n"
 str_p:		.asciiz "Feuille\n"
@@ -38,7 +13,7 @@ arr_rpc:	.word	str_r, str_p, str_c		# Tableau des strings des choix
 arr_res:	.word	str_tie, str_win, str_loo	# Tableau des strings des résultats
 	.text
 main:	
-	# ---------- Choix Joueur 1
+	# ---------- Choix joueur
 	ori $v0, $zero, 4		# print string
 	la $a0, str_p1			# message = str_p1
 	syscall				# affichage
@@ -52,7 +27,7 @@ main:
 	# ---------- Choix Ordinateur
 	ori $v0, $zero, 42		# random int range
 	ori $a0, $zero, 0		# seed à 0
-	ori $a1, $zero, 300		# borne maximale à 30 exclu [0-29]
+	ori $a1, $zero, 300		# borne maximale à 300 exclu [0-299]
 	syscall				# génération
 	or $s1, $zero, $a0		# mettre le nombre enregistré dans s1
 	
@@ -74,8 +49,6 @@ main:
 	
 	
 	# ---------- Affichage résultat
-	jal f_linebreak
-	
 	la $t0, arr_rpc			# charger le tableau des choix (en string)
 	sll $t1, $s0, 2			# choix du joueur -> index
 	add $t1, $t0, $t1		# calculer l'adresse du string du choix du joueur
@@ -85,7 +58,7 @@ main:
 	add $t2, $t0, $t2		# calculer l'adresse du string du choix de l'ordi
 	lw $t2, 0($t2)			# charger le string dans t2
 	
-	ori $v0, $zero 4		# print string
+	ori $v0, $zero, 4		# print string
 	la $a0, str_r1			# message = str_r1
 	syscall				# affichage
 	
@@ -105,16 +78,6 @@ main:
 	lw $a0, 0($t1)			# message = le résultat de la partie
 	syscall				# affichage
 	
-end:	
+	# ---------- Fin
 	ori $v0, $zero, 10
 	syscall
-	
-f_linebreak: # Afficher un retour à la ligne
-	ori $v0, $zero, 11		# print char
-	ori $a0, $zero, 10		# caractère \n
-	syscall				# affichage
-	jr $ra				# sortie
-
-	
-
-
