@@ -20,7 +20,7 @@ main:
 	
 	ori $v0, $zero, 5		# read int
 	syscall				# lecture
-	subi $s0, $v0, 1		# décrémenter pour que le premier soit 0
+	addi $s0, $v0, -1		# décrémenter pour que le premier soit 0
 	
 	
 	
