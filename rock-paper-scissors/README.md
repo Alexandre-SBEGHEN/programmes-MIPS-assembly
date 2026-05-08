@@ -4,7 +4,7 @@
 
 Une recréation du célèbre jeu pierre, feuille, ciseaux en assembleur MIPS. Le programme invite l'utilisateur à choisir entre les trois options en entrant un nombre, puis l'ordinateur effectue son choix de façon pseudo-aléatoire.
 
-Ce projet m'a permis de mieux comprendre la logique de l'assembleur, et d'apprendre à utiliser le modulo, les tableaux, les entrées/sorties, ainsi que la gestion du pseudo aléatoire.
+Ce projet m'a permis de mieux comprendre la logique de l'assembleur, et d'apprendre à utiliser le modulo, les tableaux, les entrées/sorties, ainsi que la gestion de l'aléatoire.
 
 Le code n'est peut-être pas optimisé au maximum, mais il fonctionne sans bugs.
 
