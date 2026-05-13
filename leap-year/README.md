@@ -27,4 +27,4 @@ Cette table de vérité peut se traduire simplement via la condition suivante :
 
 `(A && !B) || C` soit `(an % 4 == 0 && an % 100 != 0) || an % 400 == 0`
 
-J'ai donc implémenté ce calcul booléen via 3 registres $\$t0$, $\$t1$ et $\$t2$ représentant les 3 variables booléennes ci-dessus.
+J'ai donc implémenté ce calcul booléen via 3 registres $`\$t0`$, $`\$t1`$ et $`\$t2`$ représentant les 3 variables booléennes ci-dessus.
